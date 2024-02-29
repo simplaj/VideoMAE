@@ -1,18 +1,17 @@
 # Set the path to save checkpoints
-OUTPUT_DIR='YOUR_PATH/ssv2_videomae_pretrain_small_patch16_224_frame_16x2_tube_mask_ratio_0.9_e2400/eval_lr_1e-3_epoch_40_layer_dacay_0.7'
+OUTPUT_DIR='/root/proj/VideoMAE/scripts/ssv2/videomae_vit_small_patch16_224_tubemasking_ratio_0.9_epoch_2400/pd_finetune'
 # path to SSV2 annotation file (train.csv/val.csv/test.csv)
-DATA_PATH='YOUR_PATH/list_ssv2'
+DATA_PATH='/root/proj/VideoMAE/scripts/ssv2/videomae_vit_small_patch16_224_tubemasking_ratio_0.9_epoch_2400'
 # path to pretrain model
-MODEL_PATH='YOUR_PATH/ssv2_videomae_pretrain_small_patch16_224_frame_16x2_tube_mask_ratio_0.9_e2400/checkpoint-2399.pth'
+MODEL_PATH='/root/proj/VideoMAE/scripts/ssv2/videomae_vit_small_patch16_224_tubemasking_ratio_0.9_epoch_2400/checkpoint.pth'
 
 # batch_size can be adjusted according to number of GPUs
 # this script is for 32 GPUs (4 nodes x 8 GPUs)
-OMP_NUM_THREADS=1 python -m torch.distributed.launch --nproc_per_node=8 \
-    --master_port 12320 --nnodes=4  --node_rank=$1 --master_addr=$2 \
+OMP_NUM_THREADS=1 python  \
     run_class_finetuning.py \
     --model vit_small_patch16_224 \
     --data_set SSV2 \
-    --nb_classes 174 \
+    --nb_classes 3 \
     --data_path ${DATA_PATH} \
     --finetune ${MODEL_PATH} \
     --log_dir ${OUTPUT_DIR} \
@@ -31,6 +30,6 @@ OMP_NUM_THREADS=1 python -m torch.distributed.launch --nproc_per_node=8 \
     --epochs 40 \
     --test_num_segment 2 \
     --test_num_crop 3 \
-    --dist_eval \
-    --enable_deepspeed 
+    # --dist_eval \
+    # --enable_deepspeed 
 

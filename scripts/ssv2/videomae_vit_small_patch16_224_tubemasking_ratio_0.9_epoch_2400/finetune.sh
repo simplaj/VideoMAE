@@ -16,7 +16,7 @@ OMP_NUM_THREADS=1 python  \
     --finetune ${MODEL_PATH} \
     --log_dir ${OUTPUT_DIR} \
     --output_dir ${OUTPUT_DIR} \
-    --batch_size 12 \
+    --batch_size 8 \
     --num_sample 2 \
     --input_size 224 \
     --short_side_size 224 \

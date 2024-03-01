@@ -21,14 +21,14 @@ OMP_NUM_THREADS=1 python  \
     --num_sample 2 \
     --input_size 224 \
     --short_side_size 224 \
-    --save_ckpt_freq 10 \
+    --save_ckpt_freq 5 \
     --num_frames 16 \
     --opt adamw \
     --lr 1e-3 \
     --layer_decay 0.7 \
     --opt_betas 0.9 0.999 \
     --weight_decay 0.05 \
-    --epochs 40 \
+    --epochs 10 \
     --test_num_segment 2 \
     --test_num_crop 3 \
     --eval

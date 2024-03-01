@@ -209,7 +209,7 @@ def final_test(data_loader, model, device, file):
                                                 str(int(split_nb[i].cpu().numpy())))
             final_result.append(string)
 
-        acc1, acc5 = accuracy(output, target, topk=(1, 5))
+        acc1, acc5 = accuracy(output, target, topk=(1, 2))
 
         batch_size = videos.shape[0]
         metric_logger.update(loss=loss.item())
@@ -245,7 +245,7 @@ def merge(eval_path, num_tasks):
             label = line.split(']')[1].split(' ')[1]
             chunk_nb = line.split(']')[1].split(' ')[2]
             split_nb = line.split(']')[1].split(' ')[3]
-            data = np.fromstring(line.split('[')[1].split(']')[0], dtype=np.float, sep=',')
+            data = np.fromstring(line.split('[')[1].split(']')[0], dtype=float, sep=',')
             data = softmax(data)
             if not name in dict_feats:
                 dict_feats[name] = []

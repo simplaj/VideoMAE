@@ -1,5 +1,5 @@
 # Set the path to save checkpoints
-OUTPUT_DIR='test_results/pd_finetune'
+OUTPUT_DIR='train_results/pd_ft_weight'
 # path to SSV2 annotation file (train.csv/val.csv/test.csv)
 DATA_PATH='/root/proj/VideoMAE/scripts/ssv2/videomae_vit_small_patch16_224_tubemasking_ratio_0.9_epoch_2400'
 # path to pretrain model
